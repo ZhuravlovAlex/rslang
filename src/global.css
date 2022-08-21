@@ -1,0 +1,13 @@
+body { 
+	background-color: lightgreen;
+	height: 100hv;
+	width: 500px;
+}
+
+.container {
+	border: 2px solid black;
+}
+
+p { 
+	font-size: 20px;
+}
