@@ -1,3 +1,5 @@
 import './global.css'
+import { start } from './main'
 
-console.log ('Test successful')
+
+start();
