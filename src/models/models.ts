@@ -42,12 +42,12 @@ export type AuthResponse = {
 
 export type Statistic = {
   learnedWords: number,
-  optional?: object
+  optional?: { [key: string]: any }
 }
 
 export type Settings = {
   wordsPerDay: number,
-  optional?: object
+  optional?: { [key: string]: any }
 } 
 
 export type UserData = {
@@ -57,5 +57,5 @@ export type UserData = {
 
 export type UserWord = {
   difficulty: string,
-  optional?: object
+  optional?: { [key: string]: any }
 }
