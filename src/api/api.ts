@@ -8,16 +8,18 @@ export const userData: UserData = {
 }
 
 export const Auth = {
-  signIn: async (auth: AuthData): Promise<AuthResponse> => {
+  signIn: async (auth: AuthData): Promise<AuthResponse | string> => {
     const url = `${BASE_URL}/signin`;
     const response: Response = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(auth)
     });
+
+    if (!response.ok) return response.statusText;
+
     const result: AuthResponse = await response.json();
-    userData.token = result.token;
-    userData.id = result.userId;
+   
     saveUserInLocalStorage(result.token, result.userId);
     return result;
   }
@@ -38,14 +40,16 @@ export const Words = {
 }
 
 export const Users = {
-  createUser: async (user: User): Promise<UserResponse> => {
+  createUser: async (user: User): Promise<UserResponse | string> => {
     const url = `${BASE_URL}/users`;
     const response = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(user)
     });
-    return response.json();
+
+    if (!response.ok) console.log(await response.json())
+    return await response.json();
   },
 
   getUser: async (id: string): Promise<UserResponse | null> => {

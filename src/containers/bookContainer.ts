@@ -1,4 +1,4 @@
-import { elementaryContainer } from "./wordsLevels/elementaryContainer";
+import { elementaryContainer } from "../wordsLevels/elementaryContainer";
 
 const bookButton = async () => {
   const mainContainer = document.querySelector(".main") as HTMLElement;
