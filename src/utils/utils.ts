@@ -1,4 +1,6 @@
-function saveUserInLocalStorage(token: string, id: string): void {
+import { UserLocalStorage } from "../models/models";
+
+export function saveUserInLocalStorage(token: string, id: string): void {
   const TIMEOUT = 1.44e+7; // 4 hours
   const userSaved = {
     token: token,
@@ -8,12 +10,12 @@ function saveUserInLocalStorage(token: string, id: string): void {
   localStorage.setItem('userSaved', JSON.stringify(userSaved));
 }
 
-function getUserFromLocalStorage(): void | null {
+function getUserFromLocalStorage(): null | UserLocalStorage {
   const userSavedStr = localStorage.getItem('userSaved');
   if (!userSavedStr) {
     return null;
   }
-  const userSaved = JSON.parse(userSavedStr);
+  const userSaved: UserLocalStorage = JSON.parse(userSavedStr);
   if (Date.now() > userSaved.expire) {
     deleteUserFromLocalStorage();
     return null;
@@ -21,6 +23,14 @@ function getUserFromLocalStorage(): void | null {
   return userSaved;
 }
 
-function deleteUserFromLocalStorage(): void {
+export function getUserToken() : string | null {
+  return getUserFromLocalStorage()?.token || null;
+}
+
+export function getUserId() : string | null {
+  return getUserFromLocalStorage()?.id || null;
+}
+
+export function deleteUserFromLocalStorage(): void {
   localStorage.removeItem('userSaved');
 }
