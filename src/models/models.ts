@@ -59,3 +59,9 @@ export type UserWord = {
   difficulty: string,
   optional?: { [key: string]: any }
 }
+
+export type UserLocalStorage = {
+  token: string | null,
+  id: string | null,
+  expire: number
+}
