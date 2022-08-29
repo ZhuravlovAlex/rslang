@@ -8,32 +8,31 @@ const registrationButton = () => {
                 <p>Name<input id="auth-reg-input-name" type="text" name="drink" value="" required></p>
                 <p>E-mail<input id="auth-reg-input-email" type="email" name="drink" value="" required></p>
                 <p>Пароль<input  id="auth-reg-input-password" type="password" name="drink" value="" required></p>
-                <p><input id="auth-reg-submit" type="submit"></p>
+                <p><input id="auth-reg-submit" type="button" value=" all for english classes "></p>
             </form>
         </div>
     </div>`;
-    
+
     const form = document.querySelector('#auth-reg-form') as HTMLFormElement;
     form.onsubmit = () => {
-        const nameInput = document.querySelector("#auth-reg-input-name") as HTMLInputElement;
-        const emailInput = document.querySelector("#auth-reg-input-email") as HTMLInputElement;
-        const passwordInput = document.querySelector("#auth-reg-input-password") as HTMLInputElement;
+        const nameInput = document.querySelector('#auth-reg-input-name') as HTMLInputElement;
+        const emailInput = document.querySelector('#auth-reg-input-email') as HTMLInputElement;
+        const passwordInput = document.querySelector('#auth-reg-input-password') as HTMLInputElement;
 
         const name = nameInput.value;
         const email = emailInput.value;
         const password = passwordInput.value;
 
-        if (!name || !email || !password) return alert('Fill all fields')
-        api.Users.createUser({name, email, password})
-            .then(res => {
-                if (typeof res === 'string') return alert('Error: ' + res);
-                console.log(res);
-            })
-    }
+        if (!name || !email || !password) return alert('Fill all fields');
+        api.Users.createUser({ name, email, password }).then((res) => {
+            if (typeof res === 'string') return alert('Error: ' + res);
+            console.log(res);
+        });
+    };
 };
 
 export const RegistrationContainerRender = () => {
     // const registrationBtn = document.querySelector('.authorization') as HTMLElement;
     // registrationBtn.addEventListener('click', registrationButton);
     registrationButton();
-}
+};
