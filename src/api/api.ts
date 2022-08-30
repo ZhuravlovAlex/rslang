@@ -1,3 +1,4 @@
+
 import { AuthData, AuthResponse, Settings, Statistic, User, UserResponse, UserWord, Word } from "../models/models";
 import { getUserToken, saveUserInLocalStorage } from "../utils/utils";
 
@@ -18,18 +19,18 @@ export const Auth = {
 }
 
 export const Words = {
-  getWords: async (group: string, page: string): Promise<Word[]> => {
-    const url = `${BASE_URL}/words?page=${page}&group=${group}`;
-    const response = await fetch(url);
-    return response.json();
-  },
+    getWords: async (group: string, page: string): Promise<Word[]> => {
+        const url = `${BASE_URL}/words?page=${page}&group=${group}`;
+        const response = await fetch(url);
+        return response.json();
+    },
 
-  getWordById: async (id: string): Promise<Word> => {
-    const url = `${BASE_URL}/words/${id}`;
-    const response = await fetch(url);
-    return response.json();
-  }
-}
+    getWordById: async (id: string): Promise<Word> => {
+        const url = `${BASE_URL}/words/${id}`;
+        const response = await fetch(url);
+        return response.json();
+    },
+};
 
 export const Users = {
   createUser: async (user: User): Promise<UserResponse> => {
