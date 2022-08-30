@@ -9,7 +9,7 @@ const authorizationButton = async () => {
                 <form id="auth-login-form" action="">
                     <p>E-mail<input id="auth-reg-input-email" type="email" name="drink" value="" required></p>
                     <p>Пароль<input  id="auth-reg-input-password" type="password" name="drink" value="" required></p>
-                    <p><input type="button" value=" all for english classes "></p>
+                    <p><input type="button" id="auth-login-btn" value=" all for english classes "></p>
                     <p>Если у вас нет аккаунта, <a id="auth-reg-btn" href="#">зарегистрируйте</a> его</p>
                 </form>
             </div>
@@ -18,8 +18,8 @@ const authorizationButton = async () => {
     const authRegBtn = document.querySelector('#auth-reg-btn') as HTMLAnchorElement;
     authRegBtn.addEventListener('click', RegistrationContainerRender);
 
-    const form = document.querySelector('#auth-login-form') as HTMLFormElement;
-    form.onsubmit = () => {
+    const btn = document.querySelector('#auth-login-btn') as HTMLButtonElement;
+    btn.onclick = () => {
         const emailInput = document.querySelector('#auth-reg-input-email') as HTMLInputElement;
         const passwordInput = document.querySelector('#auth-reg-input-password') as HTMLInputElement;
 

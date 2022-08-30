@@ -13,8 +13,8 @@ const registrationButton = () => {
         </div>
     </div>`;
 
-    const form = document.querySelector('#auth-reg-form') as HTMLFormElement;
-    form.onsubmit = () => {
+    const btn = document.querySelector('#auth-reg-submit') as HTMLButtonElement;
+    btn.onclick = () => {
         const nameInput = document.querySelector('#auth-reg-input-name') as HTMLInputElement;
         const emailInput = document.querySelector('#auth-reg-input-email') as HTMLInputElement;
         const passwordInput = document.querySelector('#auth-reg-input-password') as HTMLInputElement;
