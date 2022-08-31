@@ -7,15 +7,15 @@ import { moreButton } from './containers/moreContainer';
 import { savannahButton } from './containers/savannahContainer';
 import { sprintButton } from './containers/sprintContainer';
 import { startButton } from './containers/startContainer';
-import { statisticButton } from './containers/statisticsContainer';
+import { statisticContainerRender } from './containers/statisticsContainer';
 import { videoButton } from './containers/videoContainer';
 import { writingButton } from './containers/writingContainer';
-import './global.css'
+import './global.css';
 
 function start() {
     baseContainer();
     bookContainerRender();
-    statisticButton();
+    statisticContainerRender();
     savannahButton();
     sprintButton();
     audioButton();
