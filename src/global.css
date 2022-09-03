@@ -114,6 +114,14 @@ button:hover {
 .menu:hover .menu-btn {
     background-color:indianred;
 }
+
+#book-link, #statistic-link, #audio-link, #sprint-link {
+    color: black;
+    padding: 12px;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+}
 /*
 .menu-btn span,
 .menu-btn span::before,
@@ -261,6 +269,7 @@ button:hover {
     border-color: black;
     width: 80%;
     height: 250px;
+    margin-bottom: 20px;
 }
 
 .img-container {
@@ -268,6 +277,11 @@ button:hover {
     height: 250px;
     border: solid;
     border-color: black;
+}
+
+.image {
+width: 100%;
+height: 100%;
 }
 
 .word-wrapper {
@@ -299,15 +313,21 @@ button:hover {
 }
 
 .audio-container {
+    display: flex;
     border: solid;
     border-color: black;
     height: 20%;
     width: 100%;
+    align-items: center;
+    justify-content: center;
 }
 
 .audio-btn {
-    width: 100%;
-    height: 100%;
+    
+    width: 90%;
+    height: 90%;
+    font-size: 30px;
+    color: black;
 }
 
 .word-buttons {
@@ -343,3 +363,61 @@ button:hover {
     width: 300px;
     height: 300px;
 }
+
+.pagination {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .pagination ul {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    background: #fff;
+    padding: 8px;
+    border-radius: 50px;
+    box-shadow: 0px 10px 15px rgba(0,0,0,0.1);
+  }
+
+.pagination ul li{
+    color: #20B2AA;
+    list-style: none;
+    line-height: 45px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s ease;
+  }
+  
+  .pagination ul li.numb{
+    list-style: none;
+    height: 45px;
+    width: 45px;
+    margin: 0 3px;
+    line-height: 45px;
+    border-radius: 50%;
+  }
+  
+  .pagination ul li.numb.first{
+    margin: 0px 3px 0 -5px;
+  }
+  .pagination ul li.numb.last{
+    margin: 0px -5px 0 3px;
+  }
+  .pagination ul li.dots{
+    font-size: 22px;
+    cursor: default;
+  }
+  .pagination ul li.btn{
+    padding: 0 20px;
+    border-radius: 50px;
+  }
+  .pagination li.active,
+  .pagination ul li.numb:hover,
+  .pagination ul li:first-child:hover,
+  .pagination ul li:last-child:hover{
+    color: #fff;
+    background: #20B2AA;
+  }

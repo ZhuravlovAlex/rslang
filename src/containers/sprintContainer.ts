@@ -1,6 +1,9 @@
 import { SprintGame } from "../games/sprint/sprint";
 export async function sprintButton() {
-	const sprintBtn = document.querySelector(".sprint");
+
+export function sprintButton() {
+	const sprintBtns = document.querySelectorAll(".sprint");
+
 	const mainContainer = document.querySelector(".main") as HTMLElement;
 	function sprint() {
 		(mainContainer.innerHTML = `
@@ -40,5 +43,7 @@ export async function sprintButton() {
 		});
 		wrongButton.addEventListener("click", () => { springGame.answerQuestion(points, false) });
 	}
-	sprintBtn?.addEventListener("click", sprint);
+
+sprintBtns.forEach(sprintBtn => sprintBtn.addEventListener("click", sprint));
+
 }

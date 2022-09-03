@@ -1,3 +1,4 @@
+
 import { RegistrationContainerRender } from './registrationContainer';
 import * as api from '../api/api';
 

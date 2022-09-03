@@ -1,4 +1,4 @@
-export async function aboutButton() {
+export function aboutButton() {
 	const aboutBtn = document.querySelector(".about");
 	const mainContainer = document.querySelector(".main") as HTMLElement;
 	async function about() {
