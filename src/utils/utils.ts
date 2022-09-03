@@ -10,7 +10,7 @@ export function saveUserInLocalStorage(token: string, id: string): void {
   localStorage.setItem('userSaved', JSON.stringify(userSaved));
 }
 
-function getUserFromLocalStorage(): null | UserLocalStorage {
+export function getUserFromLocalStorage(): null | UserLocalStorage {
   const userSavedStr = localStorage.getItem('userSaved');
   if (!userSavedStr) {
     return null;
@@ -34,3 +34,4 @@ export function getUserId() : string | null {
 export function deleteUserFromLocalStorage(): void {
   localStorage.removeItem('userSaved');
 }
+
