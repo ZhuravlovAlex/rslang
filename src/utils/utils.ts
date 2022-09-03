@@ -1,4 +1,4 @@
-import { UserLocalStorage, Word } from "../models/models";
+import { Word } from "../models/models";
 
 export function saveUserInLocalStorage(token: string, id: string): void {
   localStorage.setItem('token', token);

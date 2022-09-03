@@ -11,6 +11,7 @@ import { statisticButton } from './containers/statisticsContainer';
 import { videoButton } from './containers/videoContainer';
 import { writingButton } from './containers/writingContainer';
 import './global.css'
+import './games/sprint/sprint.css'
 
 function start() {
     baseContainer();

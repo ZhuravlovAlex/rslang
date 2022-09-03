@@ -60,12 +60,6 @@ export type UserWord = {
   optional?: { [key: string]: any }
 }
 
-export type UserLocalStorage = {
-  token: string | null,
-  id: string | null,
-  expire: number
-}
-
 export interface ISprintGame {
   time: number,
   startTimer(heading: HTMLHeadingElement): void;

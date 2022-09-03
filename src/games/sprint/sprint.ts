@@ -15,28 +15,33 @@ export class SprintGame implements ISprintGame {
   wordP: HTMLDivElement;
   translationP: HTMLParagraphElement;
   timerH: HTMLHeadingElement;
+  interval: NodeJS.Timer | null;
+  bonusImage: HTMLImageElement;
 
-  constructor(wordP: HTMLParagraphElement, translationP: HTMLParagraphElement, timerH: HTMLHeadingElement) {
+  constructor(wordP: HTMLParagraphElement, translationP: HTMLParagraphElement,
+    timerH: HTMLHeadingElement, bonusImage: HTMLImageElement) {
     this.time = 20;
     this.points = 0;
     this.words = [];
     this.isFinished = false;
     this.index = 0,
-    this.multiplier = 1;
+      this.multiplier = 1;
     this.winStreak = 0;
     this.wordP = wordP;
     this.translationP = translationP;
     this.timerH = timerH;
+    this.bonusImage = bonusImage;
     this.isCorrect = true;
+    this.interval = null;
   }
 
   startTimer() {
     this.timerH.innerHTML = String(this.time);
-    let interval = setInterval(() => {
+    this.interval = setInterval(() => {
       this.time -= 1;
       this.timerH.innerHTML = String(this.time);
       if (this.time < 1) {
-        clearInterval(interval);
+        clearInterval(this.interval!);
         this.endGame();
       }
     }, 1000);
@@ -50,7 +55,7 @@ export class SprintGame implements ISprintGame {
     if (answer === this.isCorrect) {
       this.winStreak += 1;
       this.checkMultiplier();
-      points.textContent = String(this.gainPoints());
+      points.textContent = `Очки:${this.gainPoints()}`;
     }
     else {
       this.winStreak = 0;
@@ -65,8 +70,26 @@ export class SprintGame implements ISprintGame {
   }
 
   checkMultiplier() {
-    if (this.winStreak > 0 && (this.winStreak % 4) === 0) {
-      this.multiplier *= 2;
+    if (this.winStreak > 0 && (this.winStreak % 4) === 0 && (this.multiplier < 4)) {
+      this.multiplier += 1;
+    }
+    this.createStars();
+    this.changeBonusImage();
+  }
+
+  changeBonusImage() {
+    this.bonusImage.src = `../assets/sprint-game/0${this.multiplier}.png`;
+
+  }
+
+  createStars() {
+    const starsContainer = document.querySelector('.stars');
+    starsContainer!.innerHTML = "";
+    for (let i = 1; i <= this.winStreak % 4; i++) {
+      const star = document.createElement('img');
+      star.src = "../../assets/sprint-game/star.png"
+      star.classList.add('star');
+      starsContainer?.append(star);
     }
   }
 
@@ -85,7 +108,7 @@ export class SprintGame implements ISprintGame {
 
   getWords(group: number, page: number = 30,) {
     let wordsArray: Promise<Word[]>[] = [];
-    for (let i = page; i <= 0; i--) {
+    for (let i = page; i >= 0; i--) {
       let tempWords = Words.getWords(`${group}`, `${i}`);
       wordsArray = wordsArray.concat(tempWords);
     }
@@ -104,10 +127,7 @@ export class SprintGame implements ISprintGame {
   }
 
   endGame() {
-    // alert(`Your points is ${this.points}`);
-    // const statistic:Statistic = {
-    // }
-    // Users.updateUserStatistic(getUserId(), )
+    clearInterval(this.interval!);
   }
 
   async updateStatistics() {
