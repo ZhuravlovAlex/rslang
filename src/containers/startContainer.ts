@@ -1,4 +1,6 @@
-export async function startButton() {
+
+export function startButton() {
+
 	const startBtn = document.querySelector(".start");
 	const mainContainer = document.querySelector(".main") as HTMLElement;
 	async function start() {

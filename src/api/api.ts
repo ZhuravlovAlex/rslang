@@ -2,7 +2,7 @@
 import { AuthData, AuthResponse, Settings, Statistic, User, UserResponse, UserWord, Word } from "../models/models";
 import { getUserToken, saveUserInLocalStorage } from "../utils/utils";
 
-const BASE_URL = "https://rs-lang-team187.herokuapp.com";
+export const BASE_URL = "https://rs-lang-team187.herokuapp.com";
 
 export const Auth = {
   signIn: async (auth: AuthData): Promise<AuthResponse> => {

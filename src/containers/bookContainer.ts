@@ -1,4 +1,9 @@
+import { advancedContainer } from "../wordsLevels/advancedContainer";
 import { elementaryContainer } from "../wordsLevels/elementaryContainer";
+import { intermediateContainer } from "../wordsLevels/intermediateContainer";
+import { preIntermediateContainer } from "../wordsLevels/preIntermediateContainer";
+import { profiencyContainer } from "../wordsLevels/profiencyContainer";
+import { upperIntermediateContainer } from "../wordsLevels/upperIntermediateContainer";
 
 const bookButton = async () => {
   const mainContainer = document.querySelector(".main") as HTMLElement;
@@ -18,10 +23,15 @@ const bookButton = async () => {
   </div>
     `;
   elementaryContainer();
+  intermediateContainer();
+  upperIntermediateContainer();
+  advancedContainer();
+  preIntermediateContainer();
+  profiencyContainer();
 };
 
 export const bookContainerRender = () => {
-  const bookBtn = document.querySelector(".book");
+  const bookBtns = document.querySelectorAll(".book");
 
-  bookBtn?.addEventListener("click", bookButton);
+  bookBtns.forEach(bookBtn => bookBtn.addEventListener("click", bookButton));
 };

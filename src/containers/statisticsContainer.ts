@@ -1,3 +1,4 @@
+
 // export async function statisticButton() {
 //     const statisticBtn = document.querySelector('.statistic');
 //     const mainContainer = document.querySelector('.main') as HTMLElement;
@@ -86,3 +87,4 @@ export const statisticContainerRender = () => {
 
     statisticBtn?.addEventListener('click', statisticButton);
 };
+

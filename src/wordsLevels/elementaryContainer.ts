@@ -1,34 +1,70 @@
+import { BASE_URL, Words } from '../api/api';
+import { audioPlay } from './audioButton';
+import { element } from './pagination';
+
+async function elementaryButton() {
+    const mainContainer = document.querySelector('.main') as HTMLElement;
+    const responseWords = await Words.getWords('', '');
+    console.log(responseWords);
+    mainContainer.innerHTML = `
+    
+        ${
+            responseWords
+                .map(
+                    (word) =>
+                        `
+                    
+                    <div class="elementary-container">   
+        <div class="words-container">
+        <div class="img-container">
+        <img class="image" src="${BASE_URL}/${word.image}">
+        </div>
+        <div class="word-wrapper">
+        <div class="word">
+        ${word.word} -
+        ${word.transcription} -
+        ${word.wordTranslate}
+        </div>
+        <div class="example-first">
+        ${word.textMeaning}<br>
+        ${word.textMeaningTranslate}
+        </div>
+        <div class="example-second">
+        ${word.textExample}<br>
+        ${word.textExampleTranslate}
+        </div>
+        <div class="audio-container">
+        <button class="audio-btn" data-id="${word.id}">
+        	&#127911;
+        </button>
+        <audio id="audio1" src="${BASE_URL}/${word.audio}" data-id="${word.id}"></audio>
+        <audio id="audio3" src="${BASE_URL}/${word.audioExample}" data-id="${word.id}"></audio>
+        <audio id="audio2" src="${BASE_URL}/${word.audioMeaning}" data-id="${word.id}"></audio>
+        </div>
+        <div class="word-buttons">
+        <button class="hard-word">
+        </button>
+        <button class="delete-word">
+        </button>
+        </div>
+        </div>
+        </div>
+        </div>
+        `
+                )
+                .join('') +
+            `
+            <div class="pagination">
+            <ul></ul>
+            </div>`
+        }
+            
+        `;
+    audioPlay();
+    element(30,5);
+}
+
 export const elementaryContainer = () => {
     const elementaryBtn = document.querySelector('.elementary') as HTMLElement;
-    const mainContainer = document.querySelector('.main') as HTMLElement;
-    function elementaryButton() {
-        mainContainer.innerHTML = `
-        <div class="elementary-container">
-          <div class="words-container">
-              <div class="img-container">
-
-              </div>
-            <div class="word-wrapper">
-              <div class="word">
-              </div>
-              <div class="example-first">
-              </div>
-              <div class="example-second">
-              </div>
-              <div class="audio-container">
-                <button class="audio-btn">
-                </button>
-              </div>
-              <div class="word-buttons">
-                <button class="hard-word">
-                </button>
-                <button class="delete-word">
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        `;
-    }
     elementaryBtn.addEventListener('click', elementaryButton);
 };

@@ -1,5 +1,5 @@
-export async function audioButton() {
-	const audioBtn = document.querySelector(".audio");
+export function audioButton() {
+	const audioBtns = document.querySelectorAll(".audio");
 	const mainContainer = document.querySelector(".main") as HTMLElement;
 	async function audio() {
 	  return (mainContainer.innerHTML = `
@@ -8,5 +8,5 @@ export async function audioButton() {
       `);
 	}
   
-	audioBtn?.addEventListener("click", audio);
+	audioBtns.forEach(audioBtn => audioBtn.addEventListener("click", audio));
   }

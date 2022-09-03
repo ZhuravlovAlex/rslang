@@ -1,4 +1,4 @@
-export async function baseContainer() {
+export function baseContainer() {
     const baseContainer = document.querySelector('.base') as HTMLDivElement;
   
     baseContainer.innerHTML = `
@@ -13,12 +13,10 @@ export async function baseContainer() {
 			  <div class="menu">
   <button class="menu-btn">☰</button>
   <div class="menu-content">
-    <a href="#">Учебник</a>
-    <a href="#">Статистика</a>
-    <a href="#">Саванна</a>
-	<a href="#">Спринт</a>
-	<a href="#">Аудиовызов</a>
-	<a href="#">Написание</a>
+    <button class="book" id="book-link">Учебник</button>
+    <button class="statistic" id="statistic-link">Статистика</button>
+	<button class="sprint" id="sprint-link">Спринт</button>
+	<button class="audio" id="audio-link">Аудиовызов</button>
   </div>
 </div>
 		</div>
@@ -28,10 +26,8 @@ export async function baseContainer() {
 		<div class="nav">
 			<button class="book">Учебник</button>
 			<button class="statistic">Статистика</button>
-			<button class="savannah">Саванна</button>
 			<button class="sprint">Спринт</button>
 			<button class="audio">Аудиовызов</button>
-			<button class="writing">Написание</button>
 		  </div>
 
 		  <div class="information">
@@ -43,7 +39,7 @@ export async function baseContainer() {
 			  </div>
 		  </div>
 		</main>
-
+		
 		<footer class="footer-wrapper">
 		<div class="footer">
 			<div class="footer-nav">
