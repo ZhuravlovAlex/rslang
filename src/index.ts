@@ -9,6 +9,7 @@ import { startButton } from './containers/startContainer';
 import { statisticContainerRender } from './containers/statisticsContainer';
 import { videoButton } from './containers/videoContainer';
 import './global.css'
+import './games/sprint/sprint.css'
 
 function start() {
     baseContainer();

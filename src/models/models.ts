@@ -41,14 +41,14 @@ export type AuthResponse = {
 }
 
 export type Statistic = {
-  learnedWords: number,
+  learnedWords?: number,
   optional?: { [key: string]: any }
 }
 
 export type Settings = {
   wordsPerDay: number,
   optional?: { [key: string]: any }
-} 
+}
 
 export type UserData = {
   token: string | null,
@@ -60,8 +60,7 @@ export type UserWord = {
   optional?: { [key: string]: any }
 }
 
-export type UserLocalStorage = {
-  token: string | null,
-  id: string | null,
-  expire: number
+export interface ISprintGame {
+  time: number,
+  startTimer(heading: HTMLHeadingElement): void;
 }
