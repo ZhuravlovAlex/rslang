@@ -1,4 +1,3 @@
-
 // export async function statisticButton() {
 //     const statisticBtn = document.querySelector('.statistic');
 //     const mainContainer = document.querySelector('.main') as HTMLElement;
@@ -21,12 +20,13 @@ import * as api from '../api/api';
 import { getUserFromLocalStorage } from '../utils/utils';
 
 const statisticButton = async () => {
+    debugger;
     //zapros k api
     //otrisovka
     // tol'ko cherez promices!!!
     const userString = localStorage.getItem('userSaved');
     if (!userString) {
-        // ERROR
+        alert('Please log in to view statistics');
     }
 
     const user = JSON.parse(userString || '{}');
@@ -36,9 +36,8 @@ const statisticButton = async () => {
         //ERROR
     }
 
-    api.Users.getUserStatistic(userId).then((res) => {
-        const mainContainer = document.querySelector('.main') as HTMLElement;
-        mainContainer.innerHTML = `
+    const mainContainer = document.querySelector('.main') as HTMLElement;
+    mainContainer.innerHTML = `
 							<div class="statistic">
 								<h1 class="stat-title">Статистическая информация</h1>
 								<div class="stat-tables">
@@ -79,12 +78,14 @@ const statisticButton = async () => {
 								</div>
 						</div>
 								`;
+
+    api.Users.getUserStatistic(userId).then((res) => {
+        debugger;
     });
 };
 
 export const statisticContainerRender = () => {
-    const statisticBtn = document.querySelector('.statistic');
-
-    statisticBtn?.addEventListener('click', statisticButton);
+    const statisticBtn = document.querySelectorAll('.statistic');
+    console.log(statisticBtn);
+    statisticBtn?.forEach((btn) => btn.addEventListener('click', statisticButton));
 };
-

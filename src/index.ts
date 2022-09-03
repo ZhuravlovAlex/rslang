@@ -6,14 +6,14 @@ import { bookContainerRender } from './containers/bookContainer';
 import { moreButton } from './containers/moreContainer';
 import { sprintButton } from './containers/sprintContainer';
 import { startButton } from './containers/startContainer';
-import { statisticButton } from './containers/statisticsContainer';
+import { statisticContainerRender } from './containers/statisticsContainer';
 import { videoButton } from './containers/videoContainer';
 import './global.css'
 
 function start() {
     baseContainer();
     bookContainerRender();
-    statisticButton();
+    statisticContainerRender();
     sprintButton();
     audioButton();
     moreButton();
