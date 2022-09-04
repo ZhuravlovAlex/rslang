@@ -17,24 +17,15 @@
 // }
 import { elementaryContainer } from '../wordsLevels/elementaryContainer';
 import * as api from '../api/api';
-import { getUserFromLocalStorage } from '../utils/utils';
+import { getUserToken, getUserId } from '../utils/utils';
 
 const statisticButton = async () => {
-    debugger;
-    //zapros k api
-    //otrisovka
-    // tol'ko cherez promices!!!
-    const userString = localStorage.getItem('userSaved');
-    if (!userString) {
-        alert('Please log in to view statistics');
-    }
+    const userId = getUserId();
+    const token = getUserToken();
 
-    const user = JSON.parse(userString || '{}');
-    const userId = user.id;
+    if (!userId) alert('Who are you?');
 
-    if (!userId) {
-        //ERROR
-    }
+    if (!token) alert('Who are you?');
 
     const mainContainer = document.querySelector('.main') as HTMLElement;
     mainContainer.innerHTML = `
@@ -79,7 +70,7 @@ const statisticButton = async () => {
 						</div>
 								`;
 
-    api.Users.getUserStatistic(userId).then((res) => {
+    api.Users.getUserStatistic(userId as string).then((res) => {
         debugger;
     });
 };
