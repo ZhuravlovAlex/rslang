@@ -10,6 +10,7 @@ import { statisticContainerRender } from './containers/statisticsContainer';
 import { videoButton } from './containers/videoContainer';
 import './global.css'
 import './games/sprint/sprint.css'
+import './games/audio/audio-game.css'
 
 function start() {
     baseContainer();
