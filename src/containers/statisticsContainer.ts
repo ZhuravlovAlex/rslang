@@ -51,7 +51,7 @@ const statisticButton = async () => {
 											</table>
 										</div>
 										<div id="sprint-bestwinstreak-graph"></div>
-										<div id="audio-bestwinstreak-graph"></div>
+										
 										<div class="stat-table-words">
 											<h3 class="stat-table-words-title">Статистика по словам</h3>
 											<table cellspacing="0" class="stat-table-words-body">
@@ -69,6 +69,7 @@ const statisticButton = async () => {
 												</tr>
 											</table>
 										</div>
+                                    <div id="audio-bestwinstreak-graph"></div>
 								</div>
 						</div>
 								`;
