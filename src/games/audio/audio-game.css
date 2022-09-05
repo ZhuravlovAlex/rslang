@@ -1,0 +1,47 @@
+.audio-game {
+  margin: 0 auto;
+  width: 60vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.audio-game h2,
+.audio-game h3 {
+  height: 40px;
+  margin: 0 5px;
+}
+
+.audio-game-image {
+  box-sizing: border-box;
+  display: block;
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+}
+
+.audio-game-image.wrong {
+  box-shadow: 0 0 50px red;
+}
+
+.audio-game-image.correct {
+  box-shadow: 0 0 50px green;
+}
+
+.audio-game-image:hover {
+  cursor: pointer;
+  border: 3px rgba(64, 64, 64, 0.1) solid;
+}
+
+.audio-game-next {
+  margin-top: 30px;
+}
+
+.audio-game button {
+  font-size: 24px;
+}
+
+.audio-game button:hover {
+  cursor: pointer;
+}
