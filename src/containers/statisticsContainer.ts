@@ -43,14 +43,15 @@ const statisticButton = async () => {
 													<td>Количество новых слов за день</td><td>${10}</td><td>${20}</td>
 												</tr>
 												<tr>
-													<td>Процент правильных ответов</td><td>${30}</td><td id="sprint-correct-answers-percent">${40}</td>
+													<td>Процент правильных ответов</td><td id="audio-correct-answers-percent">${30}</td><td id="sprint-correct-answers-percent">${40}</td>
 												</tr>
 												<tr>
-													<td>Самая длинная серия правильных ответов</td><td>${50}</td><td id="sprint-best-score">${60}</td>
+													<td>Самая длинная серия правильных ответов</td><td id="audio-best-score">${50}</td><td id="sprint-best-score">${60}</td>
 												</tr>
 											</table>
 										</div>
-										<div id="sprint-bestwinstreak-graph"></div>
+										<div id="sprint-bestwinstreak-graph">Спринт. Изменеие Best Score по дням</div>
+										<div id="audio-bestwinstreak-graph">Аудиовызов. Изменеие Best Score по дням</div>
 										<div class="stat-table-words">
 											<h3 class="stat-table-words-title">Статистика по словам</h3>
 											<table cellspacing="0" class="stat-table-words-body">
@@ -68,11 +69,13 @@ const statisticButton = async () => {
 												</tr>
 											</table>
 										</div>
+                                    
 								</div>
 						</div>
 								`;
 
     api.Users.getUserStatistic(userId as string).then((res) => {
+        //render sprint statistics
         const sprintBestScore = document.getElementById('sprint-best-score');
         if (sprintBestScore) sprintBestScore.textContent = res.optional.sprint.bestWinstreak.toString();
 
@@ -97,10 +100,36 @@ const statisticButton = async () => {
                 categories: res.optional.sprint.bestScore.map((bs) => bs.date),
             },
         };
-        debugger;
-        const chart = new ApexCharts(document.querySelector('#sprint-bestwinstreak-graph'), options);
+        const chartSprint = new ApexCharts(document.querySelector('#sprint-bestwinstreak-graph'), options);
+        chartSprint.render();
 
-        chart.render();
+        //render audoi statistics
+        const audoiBestScore = document.getElementById('audio-best-score');
+        if (audoiBestScore) audoiBestScore.textContent = res.optional.audio.bestWinstreak.toString();
+
+        const audoiCorrectAnswersPercent = document.getElementById('audio-correct-answers-percent');
+        if (audoiCorrectAnswersPercent) {
+            const total = res.optional.audio.total + res.optional.audio.wrongWords;
+            const correctAnswersPercent = Math.round((res.optional.audio.total / total) * 100);
+            audoiCorrectAnswersPercent.textContent = correctAnswersPercent.toString();
+        }
+
+        const audoiOptions = {
+            chart: {
+                type: 'line',
+            },
+            series: [
+                {
+                    name: 'Best Score',
+                    data: res.optional.audio.bestScore.map((bs) => bs.count),
+                },
+            ],
+            xaxis: {
+                categories: res.optional.audio.bestScore.map((bs) => bs.date),
+            },
+        };
+        const chartAudio = new ApexCharts(document.querySelector('#audio-bestwinstreak-graph'), audoiOptions);
+        chartAudio.render();
     });
 };
 
