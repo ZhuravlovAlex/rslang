@@ -421,3 +421,17 @@ height: 100%;
     color: #fff;
     background: #20B2AA;
   }
+
+
+  /*-----------------Statistic Grafics ---------------------*/
+
+  #sprint-bestwinstreak-graph {
+    min-height: 320px;
+    min-width: 480px;
+    background-color: #f1f1f1;
+  }
+  #audio-bestwinstreak-graph {
+    min-height: 320px;
+    min-width: 480px;
+    background-color: #f1f1f1;
+  }

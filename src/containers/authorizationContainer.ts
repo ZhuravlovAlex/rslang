@@ -1,5 +1,5 @@
-
 import { RegistrationContainerRender } from './registrationContainer';
+import { baseContainer } from './baseContainer';
 import * as api from '../api/api';
 
 const authorizationButton = async () => {
@@ -10,7 +10,7 @@ const authorizationButton = async () => {
                 <form id="auth-login-form" action="">
                     <p>E-mail<input id="auth-reg-input-email" type="email" name="drink" value="" required></p>
                     <p>Пароль<input  id="auth-reg-input-password" type="password" name="drink" value="" required></p>
-                    <p><input type="button" id="auth-login-btn" value=" all for english classes "></p>
+                    <p><input type="button" id="auth-login-btn" value="Log In"></p>
                     <p>Если у вас нет аккаунта, <a id="auth-reg-btn" href="#">зарегистрируйте</a> его</p>
                 </form>
             </div>
@@ -28,8 +28,8 @@ const authorizationButton = async () => {
         const password = passwordInput.value;
 
         api.Auth.signIn({ email, password }).then((res) => {
-            if (typeof res === 'string') return alert('Error: ' + res);
-            console.log(res);
+            if (typeof res === 'string') return alert('Invalid email or password');
+            baseContainer();
         });
     };
 };
