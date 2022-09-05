@@ -56,6 +56,19 @@ export type Statistic = {
             wrongWords: number;
             bestWinstreak: number;
         };
+        audio: {
+            learnedWords: {
+                count: number;
+                date: string;
+            }[];
+            bestScore: {
+                count: number;
+                date: string;
+            }[];
+            total: number;
+            wrongWords: number;
+            bestWinstreak: number;
+        };
     };
 };
 
