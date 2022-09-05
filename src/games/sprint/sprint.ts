@@ -28,7 +28,7 @@ export class SprintGame implements ISprintGame {
         timerH: HTMLHeadingElement,
         bonusImage: HTMLImageElement
     ) {
-        this.time = 5;
+        this.time = 20;
         this.points = 0;
         this.words = [];
         this.isFinished = false;
@@ -149,6 +149,12 @@ export class SprintGame implements ISprintGame {
                 learnedWords: 0,
                 optional: {
                     sprint: {
+                        learnedWords: [],
+                        bestScore: [],
+                        total: 0,
+                        wrongWords: 0,
+                    },
+                    audio: {
                         learnedWords: [],
                         bestScore: [],
                         total: 0,
