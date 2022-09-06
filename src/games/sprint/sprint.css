@@ -1,0 +1,45 @@
+.sprint-game {
+  width: 40%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: solid;
+  color: lightskyblue;
+  border-width: 3px;
+  border-radius: 10px;
+  padding-bottom: 10px;
+}
+
+.sprint-img {
+  display: flex;
+  width: 170px;
+  height: 170px;
+  position: absolute;
+  padding-top: 100px;
+  margin-left: 100px;
+}
+
+.wrong , .correct {
+  width: 100px;
+  height: 40px;
+}
+
+.wrong:active,
+.correct:active {
+  background-color: blueviolet;
+}
+
+.sprint-image {
+  height: 200px;
+  width: 200px;
+}
+
+.stars {
+  height: 25px;;
+}
+
+.star {
+  height: 25px;
+  width: 25px;
+}
