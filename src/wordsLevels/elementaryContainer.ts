@@ -43,9 +43,9 @@ async function elementaryButton() {
         <audio id="audio2" src="${BASE_URL}/${word.audioMeaning}" data-id="${word.id}"></audio>
         </div>
         <div class="word-buttons">
-        <button class="hard-word">
+        <button class="hard-word">Сложное слово
         </button>
-        <button class="delete-word">
+        <button class="delete-word">Удалить слово
         </button>
         </div>
         </div>

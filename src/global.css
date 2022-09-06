@@ -157,7 +157,8 @@ button:hover {
 
 .more,
 .video,
-.about {
+.about,
+.pr {
     display: flex;
     width: 600px;
     height: 40px;
@@ -758,14 +759,16 @@ tr {
     border-radius: 10px;
 }
 
-  #sprint-bestwinstreak-graph {
-    min-height: 320px;
-    min-width: 480px;
+#sprint-bestwinstreak-graph {
+    height: 320px;
+    width: 480px;
     background-color: #f1f1f1;
-  }
-  #audio-bestwinstreak-graph {
-    min-height: 320px;
-    min-width: 480px;
+    margin: 0 auto;
+}
+#audio-bestwinstreak-graph {
+    height: 320px;
+    width: 480px;
     background-color: #f1f1f1;
-  }
+    margin: 0 auto;
+}
 

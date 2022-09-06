@@ -1,6 +1,13 @@
 import { RegistrationContainerRender } from './registrationContainer';
 import { baseContainer } from './baseContainer';
 import * as api from '../api/api';
+import { aboutButton } from './aboutContainer';
+import { audioButton } from './audioContainer';
+import { bookContainerRender } from './bookContainer';
+import { moreButton } from './moreContainer';
+import { sprintButton } from './sprintContainer';
+import { statisticContainerRender } from './statisticsContainer';
+import { videoButton } from './videoContainer';
 
 const authorizationButton = async () => {
     const mainContainer = document.querySelector('.main') as HTMLElement;
@@ -28,8 +35,16 @@ const authorizationButton = async () => {
         const password = passwordInput.value;
 
         api.Auth.signIn({ email, password }).then((res) => {
-            if (typeof res === 'string') return alert('Invalid email or password');
+            if (!res) return alert('Invalid email or password');
             baseContainer();
+            bookContainerRender();
+            statisticContainerRender();
+            sprintButton();
+            audioButton();
+            moreButton();
+            videoButton();
+            aboutButton();
+            authorizationContainerRender();
         });
     };
 };
