@@ -59,13 +59,13 @@ const statisticButton = async () => {
 													<th>Статистика по словам</th><th>Значение</th>
 												</tr>
 												<tr>
-													<td>Количество новых слов за день</td><td>${70}</td>
+													<td>Количество новых слов за все время</td><td id="total-learned-words">${70}</td>
 												</tr>
 												<tr>
-													<td>Количество изученных слов за день</td><td>${80}</td>>
+													<td>Количество изученных слов за все время</td><td>${80}</td>>
 												</tr>
 												<tr>
-													<td>Процент правильных ответов за день</td><td>${90}</td>
+													<td>Процент правильных ответов за все время</td><td id="total-correct-answers-percentage">${90}</td>
 												</tr>
 											</table>
 										</div>
@@ -130,11 +130,27 @@ const statisticButton = async () => {
         };
         const chartAudio = new ApexCharts(document.querySelector('#audio-bestwinstreak-graph'), audoiOptions);
         chartAudio.render();
+        debugger
+        //total correct answers percentage
+        const total = res.optional.sprint.total + res.optional.sprint.wrongWords + res.optional.audio.total + res.optional.audio.wrongWords;
+        const percentage = Math.round((res.optional.sprint.total + res.optional.audio.total) / total * 100);
+        const totalCorrectAnswersPercentage = document.getElementById('total-correct-answers-percentage');
+        if (totalCorrectAnswersPercentage) {
+            totalCorrectAnswersPercentage.textContent = percentage.toString();
+        }
+
+        const totalLearnedWords = document.getElementById('total-learned-words');
+        if (totalLearnedWords) {
+            totalLearnedWords.textContent = res.learnedWords?.toString() || '0';
+        }
+
     });
 };
 
 export const statisticContainerRender = () => {
     const statisticBtn = document.querySelectorAll('.statistic');
-    console.log(statisticBtn);
-    statisticBtn?.forEach((btn) => btn.addEventListener('click', statisticButton));
+    statisticBtn?.forEach((btn) => btn.addEventListener('click', () => {
+        if (!getUserToken()) return alert('Вам нужно зарегистрироваться, чтобы смотреть статистику')
+        statisticButton();
+    }));
 };

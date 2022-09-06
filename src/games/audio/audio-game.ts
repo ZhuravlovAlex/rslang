@@ -1,6 +1,6 @@
 import { Words, Users } from '../../api/api';
 import { Word } from '../../models/models';
-import { getRandomInt, shuffle, getUserId } from '../../utils/utils';
+import { getRandomInt, shuffle, getUserId, getUserToken } from '../../utils/utils';
 import * as moment from 'moment';
 
 export class AudioGame {
@@ -116,7 +116,7 @@ export class AudioGame {
         document.querySelector('.audio-new-game')!.addEventListener('click', () => {
             this.startNewGame();
         });
-        this.updateStatistics();
+        if (getUserToken()) this.updateStatistics();
     }
 
     startGame() {

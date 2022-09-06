@@ -26,7 +26,6 @@ const registrationButton = () => {
         if (!name || !email || !password) return alert('Fill all fields');
         api.Users.createUser({ name, email, password }).then((res) => {
             if (typeof res === 'string') return alert('Error: ' + res);
-            console.log(res);
         });
     };
 };

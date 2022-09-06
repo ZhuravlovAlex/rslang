@@ -198,6 +198,6 @@ export const Users = {
   });
   const result = await response.json();
   token = result.token;
-  console.log(token);
+
   return result;
 }*/

@@ -54,15 +54,4 @@ export function baseContainer() {
 		</footer>
 		</div>
       `;
-
-    let menu = document.getElementById('nav-menu');
-    const burgerMenu = document.getElementById('burger-menu');
-    if (!menu || !burgerMenu) return;
-    if (!localStorage.getItem('token')) {
-        menu.style.display = 'none';
-        burgerMenu.style.display = 'none';
-    } else {
-        menu.style.display = 'flex';
-        burgerMenu.style.display = 'block';
-    }
 }

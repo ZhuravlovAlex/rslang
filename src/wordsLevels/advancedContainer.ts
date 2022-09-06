@@ -6,7 +6,6 @@ import { element } from './paginationAdvanced';
 async function advancedButton() {
     const mainContainer = document.querySelector('.main') as HTMLElement;
     const responseWords = await Words.getWords('4', '');
-    console.log(responseWords);
     mainContainer.innerHTML = `
     <div class="advanced-title"><img class="advanced-img" src="./assets/free-sticker-cheerleader-5720794.png" alt="advanced"><h1 class="title-level">Advanced</h1></div>
         ${

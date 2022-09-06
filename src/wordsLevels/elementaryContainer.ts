@@ -5,7 +5,6 @@ import { element } from './paginationElementary';
 async function elementaryButton() {
     const mainContainer = document.querySelector('.main') as HTMLElement;
     const responseWords = await Words.getWords('0', '');
-    console.log(responseWords);
     mainContainer.innerHTML = `
 
     <div class="elem-title"><img class="elementary-img" src="./assets/free-sticker-geography-5721039.png" alt="elementary"><h1 class="title-level">Elementary</h1></div>

@@ -6,7 +6,6 @@ import { element } from './paginationPreIntermediate';
 async function preIntermediateButton() {
     const mainContainer = document.querySelector('.main') as HTMLElement;
     const responseWords = await Words.getWords('1', '');
-    console.log(responseWords);
     mainContainer.innerHTML = `
     <div class="pre-title"><img class="pre-intermediateimg" src="./assets/free-sticker-highlight-5720922.png" alt="Pre-Intermediate"><h1 class="title-level">Pre-Intermediate</h1></div>
         ${

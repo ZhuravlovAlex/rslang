@@ -6,7 +6,6 @@ import { element } from './paginationProfiency';
 async function profiencyButton() {
     const mainContainer = document.querySelector('.main') as HTMLElement;
     const responseWords = await Words.getWords('5', '');
-    console.log(responseWords);
     mainContainer.innerHTML = `
     <div class="profiency-title"><img class="profiency-img" src="./assets/free-sticker-backpack-5720841.png" alt="profiency"><h1 class="title-level">Profiency</h1></div>
         ${

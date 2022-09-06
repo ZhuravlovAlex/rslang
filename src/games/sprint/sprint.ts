@@ -1,7 +1,7 @@
 import { ISprintGame, Statistic } from '../../models/models';
 import { Users, Words } from '../../api/api';
 import { Word } from '../../models/models';
-import { getRandomBoolean, getRandomInt, getUserId, shuffle } from '../../utils/utils';
+import { getRandomBoolean, getRandomInt, getUserId, getUserToken, shuffle } from '../../utils/utils';
 import * as moment from 'moment';
 
 export class SprintGame implements ISprintGame {
@@ -137,7 +137,7 @@ export class SprintGame implements ISprintGame {
         document.querySelector('.sprint-new-game')!.addEventListener('click', () => {
             this.startNewGame();
         });
-        this.updateStatistics();
+        if (getUserToken()) this.updateStatistics();
     }
 
     updateStatistics() {

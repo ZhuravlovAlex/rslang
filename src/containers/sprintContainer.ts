@@ -48,7 +48,6 @@ export function sprintButton() {
         const correctButton: HTMLButtonElement = mainContainer.querySelector('.correct') as HTMLButtonElement;
         const wrongButton: HTMLButtonElement = mainContainer.querySelector('.wrong') as HTMLButtonElement;
         document.addEventListener('keydown', (e) => {
-            console.log(e.key);
 
             if (e.key === 'ArrowLeft') {
                 wrongButton.click();
