@@ -4,13 +4,14 @@ import { getUserToken, saveUserInLocalStorage } from '../utils/utils';
 export const BASE_URL = 'https://rs-lang-team187.herokuapp.com';
 
 export const Auth = {
-    signIn: async (auth: AuthData): Promise<AuthResponse> => {
+    signIn: async (auth: AuthData): Promise<AuthResponse | null> => {
         const url = `${BASE_URL}/signin`;
         const response: Response = await fetch(url, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(auth),
         });
+        if (response.status === 403) return null;
         const result: AuthResponse = await response.json();
         saveUserInLocalStorage(result.token, result.userId);
         return result;
