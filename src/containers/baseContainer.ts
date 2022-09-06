@@ -1,6 +1,6 @@
 export function baseContainer() {
     const baseContainer = document.querySelector('.base') as HTMLDivElement;
-  
+
     baseContainer.innerHTML = `
   
 	<div class="wrapper">
@@ -10,7 +10,7 @@ export function baseContainer() {
 			<div class="header-buttons">
 			<button class="authorization">&#9094;</button>
 			  <div class="menu">
-  <button class="menu-btn">☰</button>
+  <button class="menu-btn" id="burger-menu">☰</button>
   <div class="menu-content">
     <button class="book" id="book-link">Учебник</button>
     <button class="statistic" id="statistic-link">Статистика</button>
@@ -22,7 +22,7 @@ export function baseContainer() {
 		</div>
 		</header>
 		<main class="main">
-		<div class="nav">
+		<div class="nav" id="nav-menu">
 			<button class="book">Учебник</button>
 			<button class="statistic">Статистика</button>
 			<button class="sprint">Спринт</button>
@@ -53,4 +53,15 @@ export function baseContainer() {
 		</footer>
 		</div>
       `;
-  }
+
+    let menu = document.getElementById('nav-menu');
+    const burgerMenu = document.getElementById('burger-menu');
+    if (!menu || !burgerMenu) return;
+    if (!localStorage.getItem('token')) {
+        menu.style.display = 'none';
+        burgerMenu.style.display = 'none';
+    } else {
+        menu.style.display = 'flex';
+        burgerMenu.style.display = 'block';
+    }
+}

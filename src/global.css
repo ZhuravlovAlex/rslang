@@ -486,6 +486,7 @@ height: 100%;
     background: lightskyblue;
   }
 
+
 .statistic-page {
     display: flex;
     flex-direction: column;
@@ -756,3 +757,15 @@ tr {
     border: solid;
     border-radius: 10px;
 }
+
+  #sprint-bestwinstreak-graph {
+    min-height: 320px;
+    min-width: 480px;
+    background-color: #f1f1f1;
+  }
+  #audio-bestwinstreak-graph {
+    min-height: 320px;
+    min-width: 480px;
+    background-color: #f1f1f1;
+  }
+

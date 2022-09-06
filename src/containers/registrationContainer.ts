@@ -8,7 +8,7 @@ const registrationButton = () => {
                 <p>Name<input id="auth-reg-input-name" type="text" name="drink" value="" required></p>
                 <p>E-mail<input id="auth-reg-input-email" type="email" name="drink" value="" required></p>
                 <p>Пароль<input  id="auth-reg-input-password" type="password" name="drink" value="" required></p>
-                <p><input id="auth-reg-submit" type="button" value=" all for english classes "></p>
+                <p><input id="auth-reg-submit" type="button" value=" Registration "></p>
             </form>
         </div>
     </div>`;

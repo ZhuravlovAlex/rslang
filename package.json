@@ -39,5 +39,9 @@
         "webpack-dev-server": "^3.11.3",
         "webpack-merge": "^5.8.0"
     },
-    "description": ""
+    "description": "",
+    "dependencies": {
+        "apexcharts": "^3.35.5",
+        "moment": "^2.29.4"
+    }
 }
