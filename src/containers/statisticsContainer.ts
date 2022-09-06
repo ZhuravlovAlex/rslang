@@ -29,11 +29,11 @@ const statisticButton = async () => {
 
     const mainContainer = document.querySelector('.main') as HTMLElement;
     mainContainer.innerHTML = `
-							<div class="statistic">
+							<div class="statistic-page">
 								<h1 class="stat-title">Статистическая информация</h1>
 								<div class="stat-tables">
 										<div class="stat-table-games">
-											<h3 class="stat-table-games-title">Статистика по играм</h3>
+						
 											<table cellspacing="0" class="stat-table-games-body">
 												<tr>
 													<th>Статистика по играм</th><th>Аудиовызов</th><th>Спринт</th>
@@ -50,7 +50,7 @@ const statisticButton = async () => {
 											</table>
 										</div>
 										<div class="stat-table-words">
-											<h3 class="stat-table-words-title">Статистика по словам</h3>
+											
 											<table cellspacing="0" class="stat-table-words-body">
 												<tr>
 													<th>Статистика по словам</th><th>Значение</th>
