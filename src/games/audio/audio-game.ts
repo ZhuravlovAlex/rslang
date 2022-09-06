@@ -60,7 +60,7 @@ export class AudioGame {
             answersButtons[index].textContent = this.words[el].wordTranslate;
         });
         (document.querySelector('.audio-game-next')! as HTMLButtonElement).disabled = true;
-        this.playAudioButton!.src = '../../assets/audio-game/play-icon.jpg';
+        this.playAudioButton!.src = './assets/audio-game/play-icon.jpg';
         (document.querySelector('.audio-word') as HTMLHeadingElement).textContent = ``;
         (document.querySelector('.audio-transcription') as HTMLHeadingElement).textContent = ``;
         (document.querySelector('.audio-translation') as HTMLHeadingElement).textContent = ``;
@@ -153,7 +153,7 @@ export class AudioGame {
                 this.answerQuestion(+id!);
             })
         );
-        this.playAudioButton.src = '../../assets/audio-game/play-icon.jpg';
+        this.playAudioButton.src = './assets/audio-game/play-icon.jpg';
         (document.querySelector('.audio-game-next')! as HTMLButtonElement).disabled = true;
         document.querySelector('.audio-game-next')!.addEventListener('click', () => {
             this.currentIndex++;

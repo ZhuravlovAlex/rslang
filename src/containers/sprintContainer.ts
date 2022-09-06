@@ -35,7 +35,7 @@ export function sprintButton() {
 		<h2 class="timer"></h2>
 		<h3 class="points">0</h3>
 		<div class="stars"></div>
-		<img class="sprint-image" src="../assets/sprint-game/01.png" alt="">
+		<img class="sprint-image" src="./assets/sprint-game/01.png" alt="">
 		<p class="sprint-word"></p>
 		<p class="translation"></p>
 		<div class="sprint-buttons">

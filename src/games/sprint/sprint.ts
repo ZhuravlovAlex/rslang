@@ -94,7 +94,7 @@ export class SprintGame implements ISprintGame {
     }
 
     changeBonusImage() {
-        this.bonusImage!.src = `../assets/sprint-game/0${this.multiplier}.png`;
+        this.bonusImage!.src = `./assets/sprint-game/0${this.multiplier}.png`;
     }
 
     createStars() {
@@ -102,7 +102,7 @@ export class SprintGame implements ISprintGame {
         starsContainer!.innerHTML = '';
         for (let i = 1; i <= this.winStreak % 4; i++) {
             const star = document.createElement('img');
-            star.src = '../../assets/sprint-game/star.png';
+            star.src = './assets/sprint-game/star.png';
             star.classList.add('star');
             starsContainer?.append(star);
         }
@@ -130,7 +130,7 @@ export class SprintGame implements ISprintGame {
         clearInterval(this.interval!);
         const mainContainer = document.querySelector('.main');
         mainContainer!.innerHTML = `
-        <h1>гра окончена</h1>
+        <h1>Игра окончена</h1>
         <h1>Вы набрали ${this.points} очков</h1>
         <button class="sprint-new-game">Начать новую игру</button>
         `;
