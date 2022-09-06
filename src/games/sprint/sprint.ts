@@ -13,47 +13,40 @@ export class SprintGame implements ISprintGame {
     multiplier: number;
     winStreak: number;
     isCorrect: boolean;
-    wordP: HTMLDivElement | null;
-    translationP: HTMLParagraphElement | null;
-    timerH: HTMLHeadingElement | null;
+    wordP: HTMLDivElement;
+    translationP: HTMLParagraphElement;
+    timerH: HTMLHeadingElement;
     interval: NodeJS.Timer | null;
-    bonusImage: HTMLImageElement | null;
+    bonusImage: HTMLImageElement;
     bestWinstreak = 0;
     correctAnswers = 0;
     incorrectAnswers = 0;
-    startNewGame: () => void;
 
-    constructor(startNewGame: () => void) {
+    constructor(
+        wordP: HTMLParagraphElement,
+        translationP: HTMLParagraphElement,
+        timerH: HTMLHeadingElement,
+        bonusImage: HTMLImageElement
+    ) {
         this.time = 20;
         this.points = 0;
         this.words = [];
         this.isFinished = false;
         (this.index = 0), (this.multiplier = 1);
         this.winStreak = 0;
+        this.wordP = wordP;
+        this.translationP = translationP;
+        this.timerH = timerH;
+        this.bonusImage = bonusImage;
         this.isCorrect = true;
         this.interval = null;
-        this.wordP = null;
-        this.translationP = null;
-        this.timerH = null;
-        this.bonusImage = null;
-        this.startNewGame = startNewGame;
-    }
-
-    init(difficulty: string) {
-        this.wordP = document.querySelector('.sprint-word') as HTMLParagraphElement;
-        this.translationP = document.querySelector('.translation') as HTMLParagraphElement;
-        this.timerH = document.querySelector('.timer') as HTMLHeadingElement;
-        this.bonusImage = document.querySelector('.sprint-image') as HTMLImageElement;
-        const randomPage = String(getRandomInt(0, 19));
-        this.getWords(difficulty, randomPage);
-        this.startTimer();
     }
 
     startTimer() {
-        this.timerH!.innerHTML = String(this.time);
+        this.timerH.innerHTML = String(this.time);
         this.interval = setInterval(() => {
             this.time -= 1;
-            this.timerH!.innerHTML = String(this.time);
+            this.timerH.innerHTML = String(this.time);
             if (this.time < 1) {
                 clearInterval(this.interval!);
                 this.endGame();
@@ -94,7 +87,7 @@ export class SprintGame implements ISprintGame {
     }
 
     changeBonusImage() {
-        this.bonusImage!.src = `../assets/sprint-game/0${this.multiplier}.png`;
+        this.bonusImage.src = `../assets/sprint-game/0${this.multiplier}.png`;
     }
 
     createStars() {
@@ -109,34 +102,42 @@ export class SprintGame implements ISprintGame {
     }
 
     createQuestion() {
-        this.wordP!.textContent = this.words[this.index].word;
+        this.wordP.textContent = this.words[this.index].word;
         this.isCorrect = getRandomBoolean();
         if (this.isCorrect) {
-            this.translationP!.textContent = this.words[this.index].wordTranslate;
+            this.translationP.textContent = this.words[this.index].wordTranslate;
         } else {
             const randomIndex = getRandomInt(0, this.words.length);
-            this.translationP!.textContent = this.words[randomIndex].wordTranslate;
+            this.translationP.textContent = this.words[randomIndex].wordTranslate;
         }
     }
 
-    async getWords(group: string, page: string) {
-        Words.getWords(group, page).then((result) => {
-            this.words = result;
+    getWords(group: number, page: number = 30) {
+        let wordsArray: Promise<Word[]>[] = [];
+        for (let i = page; i >= 0; i--) {
+            let tempWords = Words.getWords(`${group}`, `${i}`);
+            wordsArray = wordsArray.concat(tempWords);
+        }
+        // shuffle(wordsArray);
+        return wordsArray;
+    }
+
+    startGame(allWords: boolean = false) {
+        Promise.all(this.getWords(0)).then((result) => {
+            result.map((arr) => shuffle(arr));
+            this.words = result.flat();
+            if (allWords) {
+                shuffle(this.words);
+            }
             this.createQuestion();
+            this.startTimer();
         });
     }
 
     endGame() {
         clearInterval(this.interval!);
-        const mainContainer = document.querySelector('.main');
-        mainContainer!.innerHTML = `
-        <h1>гра окончена</h1>
-        <h1>Вы набрали ${this.points} очков</h1>
-        <button class="sprint-new-game">Начать новую игру</button>
-        `;
-        document.querySelector('.sprint-new-game')!.addEventListener('click', () => {
-            this.startNewGame();
-        });
+        alert('Game is ended!');
+
         this.updateStatistics();
     }
 
