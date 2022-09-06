@@ -4,7 +4,33 @@ export function sprintButton() {
 
     const mainContainer = document.querySelector('.main') as HTMLElement;
     function sprint() {
+        (mainContainer.innerHTML = `
+		<h1 class="audio-game-heading">Спринт</h1>
+		<div class="sprint-game">
+		<select class="sprint-game-select">
+			<h2>Выберите уровень сложности</h2>
+			<option value="0">Уровень сложности 1</option>
+			<option value="1">Уровень сложности 2</option>
+			<option value="2">Уровень сложности 3</option>
+			<option value="3">Уровень сложности 4</option>
+			<option value="4">Уровень сложности 5</option>
+			<option value="5">Уровень сложности 6</option>
+		</select>
+		<button class="sprint-game-start">Начать игру</button>
+		</div>
+		`);
+        const sprintGame = new SprintGame(sprint);
+        const difficultyLevel = document.querySelector('.sprint-game-select') as HTMLSelectElement;
+        const startGameButton = document.querySelector('.sprint-game-start');
+        startGameButton!.addEventListener("click", () => {
+            const value = difficultyLevel.value;
+            startSprintGame(sprintGame, value);
+        });
+    }
+
+    function startSprintGame(sprintGame: SprintGame ,group: string) {
         mainContainer.innerHTML = `
+        <img class="sprint-img" src="./assets/free-sticker-solar-system-5720942.png" alt="sprint">
 		<div class="sprint-game">
 		<h2 class="timer"></h2>
 		<h3 class="points">0</h3>
@@ -18,30 +44,26 @@ export function sprintButton() {
 		</div>
 		</div>
     `;
-        const timer: HTMLHeadingElement = mainContainer.querySelector('.timer') as HTMLHeadingElement;
         const points: HTMLHeadingElement = mainContainer.querySelector('.points') as HTMLHeadingElement;
         const correctButton: HTMLButtonElement = mainContainer.querySelector('.correct') as HTMLButtonElement;
         const wrongButton: HTMLButtonElement = mainContainer.querySelector('.wrong') as HTMLButtonElement;
-        const word: HTMLParagraphElement = mainContainer.querySelector('.sprint-word') as HTMLParagraphElement;
-        const translation: HTMLParagraphElement = mainContainer.querySelector('.translation') as HTMLParagraphElement;
-        const bonusImage: HTMLImageElement = mainContainer.querySelector('.sprint-image') as HTMLImageElement;
-        const springGame = new SprintGame(word, translation, timer, bonusImage);
         document.addEventListener('keydown', (e) => {
             console.log(e.key);
 
             if (e.key === 'ArrowLeft') {
                 wrongButton.click();
-            } //springGame.answerQuestion(points, false);
-            if (e.key === 'ArrowRight') springGame.answerQuestion(points, true);
+            }
+            if (e.key === 'ArrowRight') {
+                correctButton.click()
+            };
         });
-        springGame.startGame();
-        // springGame.updateStatistics();
         correctButton.addEventListener('click', () => {
-            springGame.answerQuestion(points, true);
+            sprintGame.answerQuestion(points, true);
         });
         wrongButton.addEventListener('click', () => {
-            springGame.answerQuestion(points, false);
+            sprintGame.answerQuestion(points, false);
         });
+        sprintGame.init(group);
     }
 
     sprintBtns.forEach((sprintBtn) => sprintBtn.addEventListener('click', sprint));

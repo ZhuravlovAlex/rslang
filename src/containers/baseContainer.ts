@@ -6,9 +6,8 @@ export function baseContainer() {
 	<div class="wrapper">
     <header class="header">
 			<div class="header-nav">
-			<a class="header-link" href="../index.html"><h2 class="rs-lang">RS Lang</h2></a>
+			<a class="header-link" href="../index.html"><h2 class="rs-lang">RS Lang<img class="lang-picture" src="./assets/free-sticker-pencil-5720777.png" alt="pencil"></h2></a>
 			<div class="header-buttons">
-			<button class="theme">&#9790;</button>
 			<button class="authorization">&#9094;</button>
 			  <div class="menu">
   <button class="menu-btn" id="burger-menu">☰</button>
@@ -32,8 +31,8 @@ export function baseContainer() {
 
 		  <div class="information">
 			  <div class="information-buttons">
+				<button class="pr">Pull Request  <a href="https://github.com/ZhuravlovAlex/rslang/pull/23">https://github.com/ZhuravlovAlex/rslang/pull/23</a></button>
 			  <button class="more">Узнать больше о приложении</button>
-			  <button class="start">Начать изучение</button>
 			  <button class="video">Как работает приложение</button>
 			  <button class="about">О команде</button>
 			  </div>
