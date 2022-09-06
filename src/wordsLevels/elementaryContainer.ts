@@ -1,20 +1,21 @@
 import { BASE_URL, Words } from '../api/api';
 import { audioPlay } from './audioButton';
-import { element } from './pagination';
+import { element } from './paginationElementary';
 
 async function elementaryButton() {
     const mainContainer = document.querySelector('.main') as HTMLElement;
-    const responseWords = await Words.getWords('', '');
+    const responseWords = await Words.getWords('0', '');
     console.log(responseWords);
     mainContainer.innerHTML = `
+
+    <div class="elem-title"><img class="elementary-img" src="./assets/free-sticker-geography-5721039.png" alt="elementary"><h1 class="title-level">Elementary</h1></div>
     
         ${
             responseWords
                 .map(
                     (word) =>
                         `
-                    
-                    <div class="elementary-container">   
+                    <div class="elementary-container">  
         <div class="words-container">
         <div class="img-container">
         <img class="image" src="${BASE_URL}/${word.image}">
@@ -61,10 +62,14 @@ async function elementaryButton() {
             
         `;
     audioPlay();
-    element(30,5);
+    element(30, 1);
 }
 
 export const elementaryContainer = () => {
     const elementaryBtn = document.querySelector('.elementary') as HTMLElement;
     elementaryBtn.addEventListener('click', elementaryButton);
+};
+
+window.onload = function () {
+    document.body.scrollTop = 0;
 };

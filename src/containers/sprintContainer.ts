@@ -5,6 +5,7 @@ export function sprintButton() {
     const mainContainer = document.querySelector('.main') as HTMLElement;
     function sprint() {
         mainContainer.innerHTML = `
+        <img class="sprint-img" src="./assets/free-sticker-solar-system-5720942.png" alt="sprint">
 		<div class="sprint-game">
 		<h2 class="timer"></h2>
 		<h3 class="points">0</h3>
