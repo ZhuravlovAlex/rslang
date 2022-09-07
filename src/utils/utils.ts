@@ -1,4 +1,6 @@
-import { Word } from '../models/models';
+import { Users } from '../api/api';
+import { UserWord, Word } from '../models/models';
+import { audioPlay } from '../wordsLevels/audioButton';
 
 export function saveUserInLocalStorage(token: string, id: string): void {
     localStorage.setItem('token', token);
@@ -32,4 +34,38 @@ export function getRandomInt(min: number, max: number): number {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min)) + min;
+}
+
+function postUserWord(wordId: string, difficulty: string) {
+    if (!localStorage.getItem('token')) {
+        alert('Вам нужно зарегистрироваться');
+        return;
+    }
+    const UserId =localStorage.getItem("id");
+    const userWord: UserWord = {
+        difficulty: difficulty
+    }
+    Users.createUserWord(UserId!, wordId, userWord);
+}
+
+function deleteUserWord(wordId: string) {
+    if (!localStorage.getItem('token')) {
+        alert('Вам нужно зарегистрироваться');
+        return;
+    }
+    const UserId =localStorage.getItem("id");
+    Users.deleteUserWord(UserId!, wordId);
+}
+
+
+
+export function addEventListenerHardWord() {
+    document.addEventListener("click", (e) => {
+        if ((e.target as HTMLElement).classList.contains('hard-word')) {
+            postUserWord((e.target as HTMLElement).id, "hard");
+        }
+        if ((e.target as HTMLElement).classList.contains('delete-word')) {
+            deleteUserWord((e.target as HTMLElement).id);
+        }
+    });
 }

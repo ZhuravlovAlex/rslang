@@ -105,7 +105,7 @@ export const Users = {
                 'Content-Type': 'application/json',
             },
         });
-        return response.json();
+        return response;
     },
 
     getUserAggregatedWords: async (id: string): Promise<UserWord[]> => {

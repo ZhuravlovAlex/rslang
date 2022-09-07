@@ -1,19 +1,19 @@
 import { BASE_URL, Words } from '../api/api';
+import { addEventListenerHardWord } from '../utils/utils';
 import { audioPlay } from './audioButton';
 import { element } from './paginationElementary';
+
 
 async function elementaryButton() {
     const mainContainer = document.querySelector('.main') as HTMLElement;
     const responseWords = await Words.getWords('0', '');
     mainContainer.innerHTML = `
-
     <div class="elem-title"><img class="elementary-img" src="./assets/free-sticker-geography-5721039.png" alt="elementary"><h1 class="title-level">Elementary</h1></div>
     
-        ${
-            responseWords
-                .map(
-                    (word) =>
-                        `
+        ${responseWords
+            .map(
+                (word) =>
+                    `
                     <div class="elementary-container">  
         <div class="words-container">
         <div class="img-container">
@@ -42,18 +42,18 @@ async function elementaryButton() {
         <audio id="audio2" src="${BASE_URL}/${word.audioMeaning}" data-id="${word.id}"></audio>
         </div>
         <div class="word-buttons">
-        <button class="hard-word">Сложное слово
+        <button class="hard-word" id="${word.id}">Сложное слово
         </button>
-        <button class="delete-word">Удалить слово
+        <button class="delete-word" id="${word.id}">Удалить слово
         </button>
         </div>
         </div>
         </div>
         </div>
         `
-                )
-                .join('') +
-            `
+            )
+            .join('') +
+        `
             <div class="pagination">
             <ul></ul>
             </div>`
@@ -62,6 +62,7 @@ async function elementaryButton() {
         `;
     audioPlay();
     element(30, 1);
+    addEventListenerHardWord();
 }
 
 export const elementaryContainer = () => {

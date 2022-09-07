@@ -91,10 +91,10 @@ export async function element(totalPages: number, page: number) {
             <audio id="audio2" src="${BASE_URL}/${word.audioMeaning}" data-id="${word.id}"></audio>
             </div>
             <div class="word-buttons">
-            <button class="hard-word">
-            </button>
-            <button class="delete-word">
-            </button>
+        <button class="hard-word" id="${word.id}">Сложное слово
+        </button>
+        <button class="delete-word" id="${word.id}">Удалить слово
+        </button>
             </div>
             </div>
             </div>
@@ -152,9 +152,9 @@ export async function element(totalPages: number, page: number) {
                     <audio id="audio2" src="${BASE_URL}/${word.audioMeaning}" data-id="${word.id}"></audio>
                     </div>
                     <div class="word-buttons">
-                    <button class="hard-word">
+                    <button class="hard-word" id="${word.id}">Сложное слово
                     </button>
-                    <button class="delete-word">
+                    <button class="delete-word" id="${word.id}">Удалить слово
                     </button>
                     </div>
                     </div>
@@ -219,9 +219,9 @@ export async function element(totalPages: number, page: number) {
                     <audio id="audio2" src="${BASE_URL}/${word.audioMeaning}" data-id="${word.id}"></audio>
                     </div>
                     <div class="word-buttons">
-                    <button class="hard-word">
+                    <button class="hard-word" id="${word.id}">Сложное слово
                     </button>
-                    <button class="delete-word">
+                    <button class="delete-word" id="${word.id}">Удалить слово
                     </button>
                     </div>
                     </div>
