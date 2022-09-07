@@ -40,13 +40,13 @@ const statisticButton = async () => {
 													<th>Статистика по играм</th><th>Аудиовызов</th><th>Спринт</th>
 												</tr>
 												<tr>
-													<td>Количество новых слов за день</td><td>${10}</td><td>${20}</td>
+													<td>Количество новых слов за день</td><td>${0}</td><td>${0}</td>
 												</tr>
 												<tr>
-													<td>Процент правильных ответов</td><td id="audio-correct-answers-percent">${30}</td><td id="sprint-correct-answers-percent">${40}</td>
+													<td>Процент правильных ответов</td><td id="audio-correct-answers-percent">${0}</td><td id="sprint-correct-answers-percent">${40}</td>
 												</tr>
 												<tr>
-													<td>Самая длинная серия правильных ответов</td><td id="audio-best-score">${50}</td><td id="sprint-best-score">${60}</td>
+													<td>Самая длинная серия правильных ответов</td><td id="audio-best-score">${0}</td><td id="sprint-best-score">${0}</td>
 												</tr>
 											</table>
 										</div>
@@ -59,13 +59,13 @@ const statisticButton = async () => {
 													<th>Статистика по словам</th><th>Значение</th>
 												</tr>
 												<tr>
-													<td>Количество новых слов за все время</td><td id="total-learned-words">${70}</td>
+													<td>Количество новых слов за все время</td><td id="total-learned-words">${0}</td>
 												</tr>
 												<tr>
-													<td>Количество изученных слов за все время</td><td>${80}</td>>
+													<td>Количество сложных слов за все время</td><td id="total-hard-words">${0}</td>>
 												</tr>
 												<tr>
-													<td>Процент правильных ответов за все время</td><td id="total-correct-answers-percentage">${90}</td>
+													<td>Процент правильных ответов за все время</td><td id="total-correct-answers-percentage">${0}</td>
 												</tr>
 											</table>
 										</div>
@@ -84,6 +84,13 @@ const statisticButton = async () => {
             const total = res.optional.sprint.total + res.optional.sprint.wrongWords;
             const correctAnswersPercent = Math.round((res.optional.sprint.total / total) * 100);
             sprintCorrectAnswersPercent.textContent = correctAnswersPercent.toString();
+        }
+
+        res.optional.hardWords = res.optional.hardWords || 0;
+
+        const totalHardWords = document.getElementById('total-hard-words');
+        if (totalHardWords) {
+            totalHardWords.textContent = res.optional.hardWords?.toString() || '0';
         }
 
         const options = {
@@ -130,10 +137,14 @@ const statisticButton = async () => {
         };
         const chartAudio = new ApexCharts(document.querySelector('#audio-bestwinstreak-graph'), audoiOptions);
         chartAudio.render();
-        debugger
+        debugger;
         //total correct answers percentage
-        const total = res.optional.sprint.total + res.optional.sprint.wrongWords + res.optional.audio.total + res.optional.audio.wrongWords;
-        const percentage = Math.round((res.optional.sprint.total + res.optional.audio.total) / total * 100);
+        const total =
+            res.optional.sprint.total +
+            res.optional.sprint.wrongWords +
+            res.optional.audio.total +
+            res.optional.audio.wrongWords;
+        const percentage = Math.round(((res.optional.sprint.total + res.optional.audio.total) / total) * 100);
         const totalCorrectAnswersPercentage = document.getElementById('total-correct-answers-percentage');
         if (totalCorrectAnswersPercentage) {
             totalCorrectAnswersPercentage.textContent = percentage.toString();
@@ -143,14 +154,15 @@ const statisticButton = async () => {
         if (totalLearnedWords) {
             totalLearnedWords.textContent = res.learnedWords?.toString() || '0';
         }
-
     });
 };
 
 export const statisticContainerRender = () => {
     const statisticBtn = document.querySelectorAll('.statistic');
-    statisticBtn?.forEach((btn) => btn.addEventListener('click', () => {
-        if (!getUserToken()) return alert('Вам нужно зарегистрироваться, чтобы смотреть статистику')
-        statisticButton();
-    }));
+    statisticBtn?.forEach((btn) =>
+        btn.addEventListener('click', () => {
+            if (!getUserToken()) return alert('Вам нужно зарегистрироваться, чтобы смотреть статистику');
+            statisticButton();
+        })
+    );
 };

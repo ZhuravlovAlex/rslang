@@ -43,6 +43,7 @@ export type AuthResponse = {
 export type Statistic = {
     learnedWords?: number;
     optional: {
+        hardWords?: number;
         sprint: {
             learnedWords: {
                 count: number;

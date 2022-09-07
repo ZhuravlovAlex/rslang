@@ -225,6 +225,7 @@ export class AudioGame {
             // }
 
             //push to db
+            statistic.optional.hardWords = statistic.optional.hardWords || 0;
             Users.updateUserStatistic(getUserId() || '', statistic);
         });
     }

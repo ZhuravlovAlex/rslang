@@ -191,6 +191,8 @@ export class SprintGame implements ISprintGame {
             //update wrong words
             statistic.optional.sprint.wrongWords += this.incorrectAnswers;
 
+            statistic.optional.hardWords = statistic.optional.hardWords || 0;
+
             //update learned words
             // const newLearnedWordsCount = this.learnedWords.length;
             // const prevLearnedWordsTodayIndex = statistic.optional.sprint.learnedWords.findIndex(lv => lv.date === moment().format('YYYY-MM-DD'));

@@ -41,11 +41,20 @@ function postUserWord(wordId: string, difficulty: string) {
         alert('Вам нужно зарегистрироваться');
         return;
     }
-    const UserId =localStorage.getItem("id");
+    const UserId = localStorage.getItem('id');
     const userWord: UserWord = {
-        difficulty: difficulty
-    }
-    Users.createUserWord(UserId!, wordId, userWord);
+        difficulty: difficulty,
+    };
+
+    Users.getUserStatistic(UserId!).then((res) => {
+        delete res['id'];
+
+        res.optional.hardWords = res.optional.hardWords || 0;
+        res.optional.hardWords += 1;
+
+        Users.updateUserStatistic(UserId!, res);
+        Users.createUserWord(UserId!, wordId, userWord);
+    });
 }
 
 function deleteUserWord(wordId: string) {
@@ -53,16 +62,23 @@ function deleteUserWord(wordId: string) {
         alert('Вам нужно зарегистрироваться');
         return;
     }
-    const UserId =localStorage.getItem("id");
-    Users.deleteUserWord(UserId!, wordId);
+    const UserId = localStorage.getItem('id');
+
+    Users.getUserStatistic(UserId!).then((res) => {
+        delete res['id'];
+
+        res.optional.hardWords = res.optional.hardWords || 0;
+        res.optional.hardWords = Math.max(0, res.optional.hardWords - 1);
+
+        Users.updateUserStatistic(UserId!, res);
+        Users.deleteUserWord(UserId!, wordId);
+    });
 }
 
-
-
 export function addEventListenerHardWord() {
-    document.addEventListener("click", (e) => {
+    document.addEventListener('click', (e) => {
         if ((e.target as HTMLElement).classList.contains('hard-word')) {
-            postUserWord((e.target as HTMLElement).id, "hard");
+            postUserWord((e.target as HTMLElement).id, 'hard');
         }
         if ((e.target as HTMLElement).classList.contains('delete-word')) {
             deleteUserWord((e.target as HTMLElement).id);
