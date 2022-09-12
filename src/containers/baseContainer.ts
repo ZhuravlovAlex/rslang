@@ -6,7 +6,7 @@ export function baseContainer() {
 	<div class="wrapper">
     <header class="header">
 			<div class="header-nav">
-			<a class="header-link" href="../"><h2 class="rs-lang">RS Lang<img class="lang-picture" src="./assets/free-sticker-pencil-5720777.png" alt="pencil"></h2></a>
+			<a class="header-link" href="./"><h2 class="rs-lang">RS Lang<img class="lang-picture" src="./assets/free-sticker-pencil-5720777.png" alt="pencil"></h2></a>
 			<div class="header-buttons">
 			<button class="authorization">&#9094;</button>
 			  <div class="menu">
