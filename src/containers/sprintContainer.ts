@@ -1,7 +1,7 @@
 import { SprintGame } from '../games/sprint/sprint';
 export function sprintButton() {
+    const sprintGame = new SprintGame(sprint);
     const sprintBtns = document.querySelectorAll('.sprint');
-
     const mainContainer = document.querySelector('.main') as HTMLElement;
     function sprint() {
         (mainContainer.innerHTML = `
@@ -19,7 +19,6 @@ export function sprintButton() {
 		<button class="sprint-game-start">Начать игру</button>
 		</div>
 		`);
-        const sprintGame = new SprintGame(sprint);
         const difficultyLevel = document.querySelector('.sprint-game-select') as HTMLSelectElement;
         const startGameButton = document.querySelector('.sprint-game-start');
         startGameButton!.addEventListener("click", () => {
@@ -28,7 +27,7 @@ export function sprintButton() {
         });
     }
 
-    function startSprintGame(sprintGame: SprintGame ,group: string) {
+    function startSprintGame(sprintGame: SprintGame, group: string) {
         mainContainer.innerHTML = `
         <img class="sprint-img" src="./assets/free-sticker-solar-system-5720942.png" alt="sprint">
 		<div class="sprint-game">
@@ -47,7 +46,7 @@ export function sprintButton() {
         const points: HTMLHeadingElement = mainContainer.querySelector('.points') as HTMLHeadingElement;
         const correctButton: HTMLButtonElement = mainContainer.querySelector('.correct') as HTMLButtonElement;
         const wrongButton: HTMLButtonElement = mainContainer.querySelector('.wrong') as HTMLButtonElement;
-        document.addEventListener('keydown', (e) => {
+        document.onkeydown = (e) => {
 
             if (e.key === 'ArrowLeft') {
                 wrongButton.click();
@@ -55,7 +54,7 @@ export function sprintButton() {
             if (e.key === 'ArrowRight') {
                 correctButton.click()
             };
-        });
+        };
         correctButton.addEventListener('click', () => {
             sprintGame.answerQuestion(points, true);
         });

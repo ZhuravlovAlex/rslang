@@ -8,7 +8,6 @@ export class SprintGame implements ISprintGame {
     time: number;
     points: number;
     words: Word[];
-    isFinished: boolean;
     index: number;
     multiplier: number;
     winStreak: number;
@@ -27,7 +26,6 @@ export class SprintGame implements ISprintGame {
         this.time = 20;
         this.points = 0;
         this.words = [];
-        this.isFinished = false;
         (this.index = 0), (this.multiplier = 1);
         this.winStreak = 0;
         this.isCorrect = true;
@@ -47,6 +45,13 @@ export class SprintGame implements ISprintGame {
         const randomPage = String(getRandomInt(0, 19));
         this.getWords(difficulty, randomPage);
         this.startTimer();
+    }
+
+    resetGame() {
+        this.time = 20;
+        this.points = 0;
+        (this.index = 0), (this.multiplier = 1);
+        this.winStreak = 0;
     }
 
     startTimer() {
@@ -138,6 +143,8 @@ export class SprintGame implements ISprintGame {
             this.startNewGame();
         });
         if (getUserToken()) this.updateStatistics();
+        this.resetGame();
+        document.onkeydown = null;
     }
 
     updateStatistics() {
