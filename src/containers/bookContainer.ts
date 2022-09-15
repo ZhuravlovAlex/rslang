@@ -1,5 +1,6 @@
 import { advancedContainer } from "../wordsLevels/advancedContainer";
 import { elementaryContainer } from "../wordsLevels/elementaryContainer";
+import { hardWordsContainer } from "../wordsLevels/hardWordsContainer";
 import { intermediateContainer } from "../wordsLevels/intermediateContainer";
 import { preIntermediateContainer } from "../wordsLevels/preIntermediateContainer";
 import { profiencyContainer } from "../wordsLevels/profiencyContainer";
@@ -18,6 +19,7 @@ const bookButton = async () => {
       <button class="upper-intermediate" class="button-level">B2 Upper-Intermediate</button>
       <button class="advanced" class="button-level">C1 Advanced</button>
       <button class="profiency" class="button-level">C2 Profiency</button>
+      <button class="hard-words" class="button-level">Сложные слова</button>
     </div>
   </div>
   </div>
@@ -28,6 +30,7 @@ const bookButton = async () => {
   advancedContainer();
   preIntermediateContainer();
   profiencyContainer();
+  hardWordsContainer();
 };
 
 export const bookContainerRender = () => {
