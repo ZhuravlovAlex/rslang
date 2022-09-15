@@ -1,4 +1,6 @@
 import { BASE_URL, Words } from '../api/api';
+import { audioButton } from '../containers/audioContainer';
+import { sprintButton } from '../containers/sprintContainer';
 import { audioPlay } from './audioButton';
 import { element } from './paginationProfiency';
 
@@ -7,6 +9,11 @@ async function profiencyButton() {
     const mainContainer = document.querySelector('.main') as HTMLElement;
     const responseWords = await Words.getWords('5', '');
     mainContainer.innerHTML = `
+    <div class="game-buttons">
+    <button class="sprint" id="sprint-link-book">Спринт</button>
+	<button class="audio" id="audio-link-book">Аудиовызов</button>
+    </div>
+
     <div class="profiency-title"><img class="profiency-img" src="./assets/free-sticker-backpack-5720841.png" alt="profiency"><h1 class="title-level">Profiency</h1></div>
         ${
             responseWords
@@ -44,7 +51,7 @@ async function profiencyButton() {
         <div class="word-buttons">
         <button class="hard-word" id="${word.id}">Сложное слово
         </button>
-        <button class="delete-word" id="${word.id}">Удалить слово
+        <button class="delete-word" id="${word.id}">Изученное слово
         </button>
         </div>
         </div>
@@ -62,6 +69,8 @@ async function profiencyButton() {
         `;
     audioPlay();
     element(30,1);
+    sprintButton();
+    audioButton();
 }
 
 export const profiencyContainer = () => {

@@ -1,4 +1,6 @@
 import { BASE_URL, Words } from '../api/api';
+import { audioButton } from '../containers/audioContainer';
+import { sprintButton } from '../containers/sprintContainer';
 import { audioPlay } from './audioButton';
 import { element } from './paginationAdvanced';
 
@@ -7,6 +9,11 @@ async function advancedButton() {
     const mainContainer = document.querySelector('.main') as HTMLElement;
     const responseWords = await Words.getWords('4', '');
     mainContainer.innerHTML = `
+    <div class="game-buttons">
+    <button class="sprint" id="sprint-link-book">Спринт</button>
+	<button class="audio" id="audio-link-book">Аудиовызов</button>
+    </div>
+
     <div class="advanced-title"><img class="advanced-img" src="./assets/free-sticker-cheerleader-5720794.png" alt="advanced"><h1 class="title-level">Advanced</h1></div>
         ${
             responseWords
@@ -44,7 +51,7 @@ async function advancedButton() {
         <div class="word-buttons">
         <button class="hard-word" id="${word.id}">Сложное слово
         </button>
-        <button class="delete-word" id="${word.id}">Удалить слово
+        <button class="delete-word" id="${word.id}">Изученное слово
         </button>
         </div>
         </div>
@@ -62,6 +69,8 @@ async function advancedButton() {
         `;
     audioPlay();
     element(30,1);
+    sprintButton();
+    audioButton();
 }
 
 export const advancedContainer = () => {

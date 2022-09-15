@@ -1,4 +1,6 @@
 import { BASE_URL, Words } from '../api/api';
+import { audioButton } from '../containers/audioContainer';
+import { sprintButton } from '../containers/sprintContainer';
 import { audioPlay } from './audioButton';
 import { element } from './paginationIntermediate';
 
@@ -7,6 +9,11 @@ async function intermediateButton() {
     const mainContainer = document.querySelector('.main') as HTMLElement;
     const responseWords = await Words.getWords('2', '');
     mainContainer.innerHTML = `
+    <div class="game-buttons">
+    <button class="sprint" id="sprint-link-book">Спринт</button>
+	<button class="audio" id="audio-link-book">Аудиовызов</button>
+    </div>
+
     <div class="intermediate-title"><img class="intermediateimg" src="./assets/free-sticker-football-5720812.png" alt="Intermediate"><h1 class="title-level">Intermediate</h1></div>
         ${
             responseWords
@@ -44,7 +51,7 @@ async function intermediateButton() {
         <div class="word-buttons">
         <button class="hard-word" id="${word.id}">Сложное слово
         </button>
-        <button class="delete-word" id="${word.id}">Удалить слово
+        <button class="delete-word" id="${word.id}">Изученное слово
         </button>
         </div>
         </div>
@@ -62,6 +69,8 @@ async function intermediateButton() {
         `;
     audioPlay();
     element(30,1);
+    sprintButton();
+    audioButton();
 }
 
 export const intermediateContainer = () => {

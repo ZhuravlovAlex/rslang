@@ -1,4 +1,6 @@
 import { BASE_URL, Words } from '../api/api';
+import { audioButton } from '../containers/audioContainer';
+import { sprintButton } from '../containers/sprintContainer';
 import { addEventListenerHardWord } from '../utils/utils';
 import { audioPlay } from './audioButton';
 import { element } from './paginationElementary';
@@ -8,6 +10,11 @@ async function elementaryButton() {
     const mainContainer = document.querySelector('.main') as HTMLElement;
     const responseWords = await Words.getWords('0', '');
     mainContainer.innerHTML = `
+    <div class="game-buttons">
+    <button class="sprint" id="sprint-link-book">Спринт</button>
+	<button class="audio" id="audio-link-book">Аудиовызов</button>
+    </div>
+
     <div class="elem-title"><img class="elementary-img" src="./assets/free-sticker-geography-5721039.png" alt="elementary"><h1 class="title-level">Elementary</h1></div>
     
         ${responseWords
@@ -44,7 +51,7 @@ async function elementaryButton() {
         <div class="word-buttons">
         <button class="hard-word" id="${word.id}">Сложное слово
         </button>
-        <button class="delete-word" id="${word.id}">Удалить слово
+        <button class="delete-word" id="${word.id}">Изученное слово
         </button>
         </div>
         </div>
@@ -63,6 +70,8 @@ async function elementaryButton() {
     audioPlay();
     element(30, 1);
     addEventListenerHardWord();
+    sprintButton();
+    audioButton();
 }
 
 export const elementaryContainer = () => {
