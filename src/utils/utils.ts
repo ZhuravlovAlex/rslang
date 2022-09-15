@@ -85,3 +85,16 @@ export function addEventListenerHardWord() {
         }
     });
 }
+
+export function addGameButtons(container2: HTMLElement) {
+    const container = document.querySelector(".main") as HTMLElement;
+    console.log("it has begun");
+    const gameButtons = document.createElement("div");
+    gameButtons.classList.add("game-page-buttons");
+    gameButtons.innerHTML = `
+    <button class="sprint-page-start">Спринт</button>
+    <button class="audio-page-start">Аудиовызов</button>
+    `
+    // const firstElement = container.querySelector("div:first-child") as HTMLElement;
+    container.insertBefore(gameButtons, container.firstChild);
+}
