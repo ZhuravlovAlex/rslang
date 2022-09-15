@@ -33,14 +33,36 @@ export const Words = {
 };
 
 export const Users = {
-    createUser: async (user: User): Promise<UserResponse> => {
+    createUser: async (user: User): Promise<UserResponse | void> => {
         const url = `${BASE_URL}/users`;
         const response = await fetch(url, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(user),
         });
-        return response.json();
+        // console.log(response);
+        // if (response.ok === true) await response.json();
+
+        // const body = await response.json();
+        debugger
+        switch (response.status) {
+            case 422: {
+                const body = await response.json();
+                const messages = body.error.errors.map((err: any) => err.message.replaceAll('"', ''));
+                return alert(messages.join('\n'));
+            }
+            case 417: {
+                return alert('Пользователь с таким эмэйлом уже существует');
+            }
+            default: {
+                const body = await response.json();
+                return body;
+            }
+        }
+            
+        
+
+        
     },
 
     getUser: async (id: string): Promise<UserResponse> => {
@@ -144,7 +166,27 @@ export const Users = {
                 'Content-Type': 'application/json',
             },
         });
-        return response.status === 200 ? response.json() : null;
+
+        const template = {
+            learnedWords: 0,
+            optional: {
+                sprint: {
+                    learnedWords: [],
+                    bestScore: [],
+                    total: 0,
+                    wrongWords: 0,
+                    bestWinstreak: 0
+                },
+                audio: {
+                    learnedWords: [],
+                    bestScore: [],
+                    total: 0,
+                    wrongWords: 0,
+                    bestWinstreak: 0
+                },
+            },
+        };
+        return response.status === 200 ? response.json() : template;
     },
 
     updateUserStatistic: async (id: string, statistic: Statistic): Promise<Statistic> => {

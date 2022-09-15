@@ -25,7 +25,8 @@ const registrationButton = () => {
 
         if (!name || !email || !password) return alert('Fill all fields');
         api.Users.createUser({ name, email, password }).then((res) => {
-            if (typeof res === 'string') return alert('Error: ' + res);
+            if (!res) return;
+            alert('Регистрация прошла успешно. Войдите в систему, чтобы получить доступ к новым возможностям.');
         });
     };
 };

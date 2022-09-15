@@ -36,6 +36,7 @@ const authorizationButton = async () => {
 
         api.Auth.signIn({ email, password }).then((res) => {
             if (!res) return alert('Invalid email or password');
+            alert('Вы успешно вошли в систему.')
             baseContainer();
             bookContainerRender();
             statisticContainerRender();

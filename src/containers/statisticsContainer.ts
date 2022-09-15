@@ -83,7 +83,7 @@ const statisticButton = async () => {
         if (sprintCorrectAnswersPercent) {
             const total = res.optional.sprint.total + res.optional.sprint.wrongWords;
             const correctAnswersPercent = Math.round((res.optional.sprint.total / total) * 100);
-            sprintCorrectAnswersPercent.textContent = correctAnswersPercent.toString();
+            sprintCorrectAnswersPercent.textContent = Number.isNaN(correctAnswersPercent) ? '0' : correctAnswersPercent.toString();
         }
 
         res.optional.hardWords = res.optional.hardWords || 0;
@@ -106,6 +106,17 @@ const statisticButton = async () => {
             xaxis: {
                 categories: res.optional.sprint.bestScore.map((bs) => bs.date),
             },
+            noData: {
+                text: 'Не хватает данных',
+                align: 'center',
+                verticalAlign: 'middle',
+                offsetX: 0,
+                offsetY: 0,
+                style: {
+                  color: 'black',
+                  fontSize: '14px'
+                }
+            }
         };
         const chartSprint = new ApexCharts(document.querySelector('#sprint-bestwinstreak-graph'), options);
         chartSprint.render();
@@ -118,7 +129,7 @@ const statisticButton = async () => {
         if (audoiCorrectAnswersPercent) {
             const total = res.optional.audio.total + res.optional.audio.wrongWords;
             const correctAnswersPercent = Math.round((res.optional.audio.total / total) * 100);
-            audoiCorrectAnswersPercent.textContent = correctAnswersPercent.toString();
+            audoiCorrectAnswersPercent.textContent = Number.isNaN(correctAnswersPercent) ? '0' : correctAnswersPercent.toString();
         }
 
         const audoiOptions = {
@@ -134,6 +145,17 @@ const statisticButton = async () => {
             xaxis: {
                 categories: res.optional.audio.bestScore.map((bs) => bs.date),
             },
+            noData: {
+                text: 'Не хватает данных',
+                align: 'center',
+                verticalAlign: 'middle',
+                offsetX: 0,
+                offsetY: 0,
+                style: {
+                  color: 'black',
+                  fontSize: '14px'
+                }
+            }
         };
         const chartAudio = new ApexCharts(document.querySelector('#audio-bestwinstreak-graph'), audoiOptions);
         chartAudio.render();
@@ -147,7 +169,7 @@ const statisticButton = async () => {
         const percentage = Math.round(((res.optional.sprint.total + res.optional.audio.total) / total) * 100);
         const totalCorrectAnswersPercentage = document.getElementById('total-correct-answers-percentage');
         if (totalCorrectAnswersPercentage) {
-            totalCorrectAnswersPercentage.textContent = percentage.toString();
+            totalCorrectAnswersPercentage.textContent = Number.isNaN(percentage) ? '0' : percentage.toString();
         }
 
         const totalLearnedWords = document.getElementById('total-learned-words');
